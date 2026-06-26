@@ -1,5 +1,10 @@
 {
   "name": "release-test",
   "version": "1.0.1",
-  "private": true
+  "private": true,
+  "scripts": {
+    "release:patch": "pnpm version patch -m \"release v%s\"",
+    "release:minor": "pnpm version minor -m \"release v%s\"",
+    "release:major": "pnpm version major -m \"release v%s\""
+  }
 }

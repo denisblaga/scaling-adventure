@@ -21,7 +21,6 @@ jobs:
     name: Create GitHub Release
     runs-on: ubuntu-slim
     needs: validate-and-deploy
-    if: ${{ !contains(github.ref_name, '-') }}
 
     permissions:
       contents: write

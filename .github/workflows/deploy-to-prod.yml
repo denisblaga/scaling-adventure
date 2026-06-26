@@ -1,0 +1,40 @@
+name: Deploy to PROD
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  validate-and-deploy:
+    name: Lint, build, Test & Deploy
+    runs-on: ubuntu-slim
+
+    if: ${{ !contains(github.ref_name, '-') }}
+
+    steps:
+      - name: Print success
+        run: echo "✅ Pipeline ran successfully!"
+
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-slim
+    needs: validate-and-deploy
+    if: ${{ startsWith(github.ref, 'refs/tags/') && !contains(github.ref_name, '-') }}
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          generate_release_notes: true

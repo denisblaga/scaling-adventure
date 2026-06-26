@@ -5,6 +5,8 @@
   "scripts": {
     "release:patch": "pnpm version patch -m \"Release v%s\"",
     "release:minor": "pnpm version minor -m \"Release v%s\"",
-    "release:major": "pnpm version major -m \"Release v%s\""
+    "release:major": "pnpm version major -m \"Release v%s\"",
+    "release:beta": "pnpm version prerelease --preid beta -m \"Release v%s\"",
+    "release:rc": "pnpm version prerelease --preid rc -m \"Release v%s\""
   }
 }

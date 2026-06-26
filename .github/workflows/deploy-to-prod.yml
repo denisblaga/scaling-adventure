@@ -21,7 +21,7 @@ jobs:
     name: Create GitHub Release
     runs-on: ubuntu-slim
     needs: validate-and-deploy
-    if: ${{ startsWith(github.ref, 'refs/tags/') && !contains(github.ref_name, '-') }}
+    if: ${{ !contains(github.ref_name, '-') }}
 
     permissions:
       contents: write
@@ -29,8 +29,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Create release
         uses: softprops/action-gh-release@v2

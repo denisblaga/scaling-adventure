@@ -1,6 +1,6 @@
 {
   "name": "release-test",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "scripts": {
     "release:patch": "pnpm version patch -m \"Release v%s\"",
